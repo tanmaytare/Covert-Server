@@ -1,0 +1,28 @@
+<div class="data-container">
+  <div class="data-card" *ngFor="let item of data">
+    <h3>Contacts</h3>
+    <ul>
+      <li *ngFor="let contact of item.contacts">
+        {{ contact.name }}: {{ contact.number }}
+      </li>
+    </ul>
+
+    <h3>Call Logs</h3>
+    <ul>
+      <li *ngFor="let call of item.callLogs">
+        {{ call.number }}: {{ call.date }} (Type: {{ call.type }})
+      </li>
+    </ul>
+
+    <h3>SMS Logs</h3>
+    <ul>
+      <li *ngFor="let sms of item.smsLogs">
+        {{ sms.message }} (From: {{ sms.from }})
+      </li>
+    </ul>
+
+
+    <h3>Location</h3>
+    <p>Latitude: {{ item.location.latitude || 'N/A' }}, Longitude: {{ item.location.longitude || 'N/A' }}</p>
+  </div>
+</div>
