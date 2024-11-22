@@ -1,0 +1,66 @@
+<div class="user-header" [ngClass]="{ 'unsafe': isUnsafe, 'safe': !isUnsafe }">
+  <h2>{{ userId }}</h2>
+  <button [ngClass]="{ 'unsafe': isUnsafe, 'safe': !isUnsafe }">
+    {{ isUnsafe ? 'Unsafe' : 'Safe' }}
+  </button>
+</div>
+
+<div class="data-container">
+  <div class="data-card" *ngFor="let item of data">
+    <div class="section-box-container">
+      <!-- Contacts Box -->
+      <div class="section-box">
+        <h3>Contacts</h3>
+        <ul>
+          <li *ngFor="let contact of item.contacts.slice(0,10)">
+           {{ contact.name }}: {{ contact.number }}
+          </li>
+        </ul>
+        <button *ngIf="item.contacts.length > 3" (click)="toggleData('contacts', item)">Read More</button>
+        <ul *ngIf="item.showContacts">
+          <li *ngFor="let contact of item.contacts.slice(3)">
+           {{ contact.name }}: {{ contact.number }}
+          </li>
+        </ul>
+      </div>
+
+      <!-- Call Logs Box -->
+      <div class="section-box">
+        <h3>Call Logs</h3>
+        <ul>
+          <li *ngFor="let call of item.callLogs.slice(0,10)">
+            {{ call.number }}: {{ call.date }} (Type: {{ call.type }})
+          </li>
+        </ul>
+        <button *ngIf="item.callLogs.length > 3" (click)="toggleData('callLogs', item)">Read More</button>
+        <ul *ngIf="item.showCallLogs">
+          <li *ngFor="let call of item.callLogs.slice(3)">
+            {{ call.number }}: {{ call.date }}
+          </li>
+        </ul>
+      </div>
+
+      <!-- SMS Logs Box -->
+      <div class="section-box">
+        <h3>SMS Logs</h3>
+        <ul>
+          <li *ngFor="let sms of item.smsLogs.slice(0,5)">
+            {{ sms.message }} (From: {{ sms.from }})
+          </li>
+        </ul>
+        <button *ngIf="item.smsLogs.length > 3" (click)="toggleData('smsLogs', item)">Read More</button>
+        <ul *ngIf="item.showSmsLogs">
+          <li *ngFor="let sms of item.smsLogs.slice(3)">
+            {{ sms.message }} (From: {{ sms.from }})
+          </li>
+        </ul>
+      </div>
+
+      <!-- Location Box -->
+      <div class="section-box">
+        <h3>Location</h3>
+        <p>Latitude: {{ item.location.latitude || 'N/A' }}, Longitude: {{ item.location.longitude || 'N/A' }}</p>
+      </div>
+    </div>
+  </div>
+</div>

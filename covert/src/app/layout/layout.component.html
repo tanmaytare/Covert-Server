@@ -1,0 +1,19 @@
+<hr>
+<div *ngIf="userIds.length > 0; else noData">
+  <div class="cards-container">
+    <mat-card
+      *ngFor="let userId of userIds"
+      class="user-card"
+      (click)="onCardClick(userId)">
+      <mat-card-title>{{ userId }}</mat-card-title>
+    </mat-card>
+  </div>
+</div>
+<hr>
+
+<ng-template #noData>
+  <p>No users found.</p>
+</ng-template>
+
+<router-outlet></router-outlet>
+

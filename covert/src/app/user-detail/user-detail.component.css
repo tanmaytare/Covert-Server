@@ -1,0 +1,113 @@
+.data-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center; /* Optional: Centers the entire content horizontally */
+}
+
+.data-card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  width: 100%; /* Make each data-card take full width initially */
+  max-width: 1200px; /* Optional: Max width for larger screens */
+}
+
+h3 {
+  margin-bottom: 10px;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  margin-bottom: 8px;
+}
+
+/* Flex container for horizontally arranging boxes */
+.section-box-container {
+  display: flex;
+  justify-content: space-between; /* Ensure space between columns */
+  gap: 20px; /* Spacing between the boxes */
+  flex-wrap: wrap; /* Ensure boxes wrap on smaller screens */
+}
+
+/* Individual section box styling */
+.section-box {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px;
+  background-color: #f9f9f9;
+  flex: 1 1 calc(33% - 20px); /* Take up 1/3 of the container, minus the gap */
+  min-width: 280px; /* Minimum width to ensure readability */
+  box-sizing: border-box;
+}
+
+.section-box h3 {
+  margin-top: 0;
+}
+
+button {
+  margin-top: 10px;
+  padding: 5px 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+.media-img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
+
+.user-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 2px solid #ccc;
+}
+
+.user-header h2 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+button {
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button.safe {
+  background-color: green;
+  color: white;
+}
+
+button.unsafe {
+  background-color: red;
+  color: white;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+.user-header.safe h2 {
+  color: green;
+}
+
+.user-header.unsafe h2 {
+  color: red;
+}
+
