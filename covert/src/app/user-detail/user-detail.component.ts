@@ -3,7 +3,7 @@ import { Component, inject } from '@angular/core';
 import { Firestore } from '@angular/fire/firestore';
 import { FirestoreDataService } from '../firestore-data.service';
 import { ActivatedRoute } from '@angular/router';
-import { log } from 'console';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-user-detail',
@@ -13,12 +13,14 @@ import { log } from 'console';
   styleUrls: ['./user-detail.component.css']
 })
 export class UserDetailComponent {
+  userImage: SafeUrl | null = null;
   userId: string | null = null;
   firestore: Firestore = inject(Firestore);
   data: any[] = [];
 
+
   // Old code remains intact, no change here.
-  constructor(private route: ActivatedRoute, private firestoreDataService: FirestoreDataService) {}
+  constructor(private route: ActivatedRoute, private firestoreDataService: FirestoreDataService, private sanitizer: DomSanitizer) {}
 
   ngOnInit(): void {
     this.userId = this.route.snapshot.paramMap.get('id');
@@ -57,8 +59,15 @@ export class UserDetailComponent {
       this.checkSafety();
     });
 
+    this.firestoreDataService.getImageBase64(this.userId!).subscribe(base64Image => {
+      if (base64Image) {
+        const imageUrl = 'data:image/png;base64,' + base64Image;
+        this.userImage = this.sanitizer.bypassSecurityTrustUrl(imageUrl); // Sanitize the URL for display
+      }
+    });
 
   }
+
 
   toggleData(type: string, item: any): void {
     switch (type) {
@@ -245,4 +254,8 @@ export class UserDetailComponent {
     });
   }
 
+  triggerCamera() {
+    this.firestoreDataService.triggerCameraCommand();
+  }
 }
+
